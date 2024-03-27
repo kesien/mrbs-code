@@ -846,6 +846,7 @@ table.dwm_main {
   margin-right: 0.5em;
 }
 
+
 .awaiting_approval a::before {
   content: '?';
   margin-right: 0.5em;
@@ -2790,5 +2791,11 @@ nav.qr {
   transform: translateY(-50%);
 }
 
+.first_entry {
+  background: none !important;
+  background-color: #ffcc00 !important;
+}
 
-
+.first_entry .I {
+  background: none;
+}

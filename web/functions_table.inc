@@ -229,6 +229,9 @@ function cell_html(array $cell, array $query_vars, bool $is_invalid = false) : s
         // including content.
 
         $classes = get_entry_classes($booking);
+        if (is_first_entry($booking)) {
+            $classes[] = 'first_entry';
+        }
         $classes[] = 'booking';
 
         if ($booking['is_multiday_start'])
@@ -1112,6 +1115,9 @@ function multiday_view_all_rooms_innerhtml(string $view, int $view_all, int $yea
             $n =    $this_entry['n_slots'];
             $text = $this_entry['name'];
             $classes = get_entry_classes($this_entry);
+            if (is_first_entry($this_entry)) {
+                $classes[] = 'first_entry';
+            }
             $tbody .= get_flex_div($n, $classes, $text, $text);
             $slots = 0;
           }
@@ -1766,6 +1772,9 @@ function month_room_table_innerhtml(string $view, int $view_all, int $year, int 
         $entry = prepare_entry($entry);
 
         $classes = get_entry_classes($entry);
+        if (is_first_entry($entry)) {
+            $classes[] = 'first_entry';
+        }
         $classes[] = $monthly_view_entries_details;
 
         $html .= '<div class="' . implode(' ', $classes) . '">';
@@ -1838,4 +1847,11 @@ function month_room_table_innerhtml(string $view, int $view_all, int $year, int 
   $html .= "</tbody>\n";
 
   return $html;
+}
+
+function is_first_entry($entry) {
+  if (isset($entry['repeat_id'])) {
+    $smallest_id = get_smallest_id_based_on_repeat_id($entry['repeat_id']);
+    return $smallest_id == $entry['id'];
+  }
 }

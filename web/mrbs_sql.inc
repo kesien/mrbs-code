@@ -1506,6 +1506,27 @@ function get_repeat_id(int $entry_id) : ?int
   return (isset($row['repeat_id'])) ? (int) $row['repeat_id'] : null;
 }
 
+function get_smallest_id_based_on_repeat_id(int $repeat_id) : ?int
+{
+  $sql = "SELECT id
+            FROM " . _tbl('entry') . "
+           WHERE repeat_id=?
+           ORDER BY id ASC
+           LIMIT 1";
+
+  $res = db()->query($sql, array($repeat_id));
+
+  if ($res->count() == 0)
+  {
+    // This should not happen
+    trigger_error('$repeat_id=' . "$repeat_id does not exist.", E_USER_NOTICE);
+    return null;
+  }
+
+  $row = $res->next_row_keyed();
+  return (isset($row['id'])) ? (int) $row['id'] : null;
+}
+
 
 function get_repeat(int $repeat_id) : ?array
 {
