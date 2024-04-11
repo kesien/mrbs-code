@@ -2799,3 +2799,12 @@ nav.qr {
 .first_entry .I {
   background: none;
 }
+
+.last_entry {
+  background: none !important;
+  background-color: #ff6666 !important;
+}
+
+.first_entry a, .last_entry a {
+  background-color: none;
+}
