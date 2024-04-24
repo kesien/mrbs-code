@@ -1532,7 +1532,7 @@ function get_biggest_id_based_on_repeat_id(int $repeat_id): ?int
   $sql = "SELECT id
             FROM " . _tbl('entry') . "
            WHERE repeat_id=?
-           ORDER BY id DESC
+           ORDER BY end_time DESC
            LIMIT 1";
 
   $res = db()->query($sql, array($repeat_id));

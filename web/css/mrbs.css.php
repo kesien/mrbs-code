@@ -2806,5 +2806,5 @@ nav.qr {
 }
 
 .first_entry a, .last_entry a {
-  background-color: none;
+  background: none;
 }

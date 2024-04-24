@@ -30,7 +30,7 @@ function get_color_key() : string
       $html .= "<div class=\"$key\">" . get_type_vocab($key) . "</div>\n";
     }
 
-    $html .= "</div>\n";
+    $html .= "<div class='first_entry'>". get_vocab("first_entry") . "</div><div class='last_entry'>" . get_vocab("last_entry") . "</div></div>\n";
   }
 
   return $html;
